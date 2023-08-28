@@ -8,31 +8,32 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/users")  // /api/users/medic & /api/users/medic - endpointuri pentru ambele clase
+@RequestMapping("/api/users")  // /api/users/patient & /api/users/medic - endpointuri pentru ambele clase
 public class UserController {
     //Definire endpointuri
 
     @Autowired
     private UserService userService;
 
-//    @GetMapping("/{id}")
-//    public ResponseEntity<User> getUser(@PathVariable Long id) {
-//       // User user = userService.getUserById(id);
-//        if (user == null) {
-//            return ResponseEntity.notFound().build();
-//        }
-//        return ResponseEntity.ok(user);
-//    }
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUser(@PathVariable Long id) {
+        User user = userService.getUserById(id);
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(user);
+    }
 
-//    @PostMapping
-//    public ResponseEntity<String> addUser(@RequestBody User user) {
-//       // userService.addUser(user);
-//        return ResponseEntity.ok("User added successfully");
-//    }
-//
-//    @PutMapping("/{id}")
-//    public ResponseEntity<String> updateUser(@PathVariable Long id, @RequestBody User user) {
-//   //     userService.updateUser(id, user);
-//        return ResponseEntity.ok("User updated successfully");
-//    }
+    @PostMapping
+    public ResponseEntity<String> addUser(@RequestBody User user) {
+        userService.addUser(user);
+        return ResponseEntity.ok("User added successfully");
+    }
+
+    @GetMapping("/users/medic") //Metoda de cautat medici.
+
+
+
+    }
+
 }
