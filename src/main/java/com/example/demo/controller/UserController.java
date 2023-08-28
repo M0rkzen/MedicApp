@@ -30,10 +30,8 @@ public class UserController {
         return ResponseEntity.ok("User added successfully");
     }
 
-    @GetMapping("/users/medic") //Metoda de cautat medici.
+   // @GetMapping("/users/medic") //Metoda de cautat medici.
 
 
-
-    }
-
+    
 }
