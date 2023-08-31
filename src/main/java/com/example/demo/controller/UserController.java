@@ -33,5 +33,5 @@ public class UserController {
    // @GetMapping("/users/medic") //Metoda de cautat medici.
 
 
-    
+
 }
