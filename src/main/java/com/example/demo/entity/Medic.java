@@ -2,8 +2,10 @@ package com.example.demo.entity;
 
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "medics")
 public class Medic extends User {
     private String specialization;
 
