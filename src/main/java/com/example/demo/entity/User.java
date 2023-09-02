@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorColumn(name = "user_difference", discriminatorType = DiscriminatorType.STRING)
 @Table(name = "users") // Specify the table name here
 public class User {
 
