@@ -1,36 +1,24 @@
 package com.example.demo.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.STRING)
 @Table(name = "users")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "fname")
     private String firstName;
-    @Column(name = "lname")
     private String lastName;
     private String email;
     private String phone;
-    private String address;
-    private String type;
-
-    public User(Long id, String firstName, String lastName, String email, String phone, String address, String type) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phone = phone;
-        this.address = address;
-        this.type = type;
-    }
+    private String birthDate;
 
     public Long getId() {
         return id;
@@ -72,20 +60,21 @@ public class User {
         this.phone = phone;
     }
 
-    public String getAddress() {
-        return address;
+    public String getBirthDate() {
+        return birthDate;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
+    public User(Long id, String firstName, String lastName, String email, String phone, String birthDate) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.birthDate = birthDate;
     }
 
     public User() {

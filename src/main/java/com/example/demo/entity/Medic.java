@@ -1,30 +1,29 @@
 package com.example.demo.entity;
 
-
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import jakarta.persistence.*;
+import jakarta.persistence.Table;
 
 @Entity
+@DiscriminatorValue("MEDIC")
 @Table(name = "medics")
 public class Medic extends User {
-    private String specialization;
+
+    private String specializare;
+
+    public String getSpecializare() {
+        return specializare;
+    }
+
+    public void setSpecializare(String specializare) {
+        this.specializare = specializare;
+    }
+
+    public Medic(Long id, String firstName, String lastName, String email, String phone, String birthDate, String specializare) {
+        super(id, firstName, lastName, email, phone, birthDate);
+        this.specializare = specializare;
+    }
 
     public Medic() {
-
     }
-
-    public Medic(String specialization) {
-        this.specialization = specialization;
-    }
-
-    public String getSpecialization(){
-        return specialization;
-    }
-
-    public void setSpecialization(String specialization){
-       this.specialization = specialization;
-    }
-
-
 }
-
