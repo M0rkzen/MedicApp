@@ -14,7 +14,7 @@ public class UserService {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-    public void addNewUser(User user) {
+    public void addNewUser(User user, String userType) {
         userRepository.saveAndFlush(user);
 
     }

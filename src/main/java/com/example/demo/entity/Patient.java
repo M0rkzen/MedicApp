@@ -4,13 +4,22 @@ import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
+import java.util.Date;
+
 @Entity
-@DiscriminatorValue("PATIENT")
-@Table(name = "patients")
-public class Patient extends User {
+@DiscriminatorValue("Patient")
+
+public class Patient extends User{
 
     private String disease;
-    private String recidivat;
+
+    public Patient(Long id, String firstName, String lastName, String email, String phone, Date birthDate, String userType, String disease) {
+        super(id, firstName, lastName, email, phone, birthDate, userType);
+        this.disease = disease;
+    }
+
+    public Patient() {
+    }
 
     public String getDisease() {
         return disease;
@@ -18,22 +27,5 @@ public class Patient extends User {
 
     public void setDisease(String disease) {
         this.disease = disease;
-    }
-
-    public String getRecidivat() {
-        return recidivat;
-    }
-
-    public void setRecidivat(String recidivat) {
-        this.recidivat = recidivat;
-    }
-
-    public Patient(Long id, String firstName, String lastName, String email, String phone, String birthDate, String disease, String recidivat) {
-        super(id, firstName, lastName, email, phone, birthDate);
-        this.disease = disease;
-        this.recidivat = recidivat;
-    }
-
-    public Patient() {
     }
 }

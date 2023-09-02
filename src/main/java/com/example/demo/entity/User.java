@@ -1,6 +1,5 @@
 package com.example.demo.entity;
 
-
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -8,7 +7,7 @@ import java.util.Date;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.STRING)
-@Table(name = "users")
+@Table(name = "users") // Specify the table name here
 public class User {
 
     @Id
@@ -18,7 +17,22 @@ public class User {
     private String lastName;
     private String email;
     private String phone;
-    private String birthDate;
+    private Date birthDate;
+    private String userType;
+
+
+    public User(Long id, String firstName, String lastName, String email, String phone, Date birthDate, String userType) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.birthDate = birthDate;
+        this.userType = userType;
+    }
+
+    public User() {
+    }
 
     public Long getId() {
         return id;
@@ -60,23 +74,19 @@ public class User {
         this.phone = phone;
     }
 
-    public String getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(String birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 
-    public User(Long id, String firstName, String lastName, String email, String phone, String birthDate) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phone = phone;
-        this.birthDate = birthDate;
+    public String getUserType() {
+        return userType;
     }
 
-    public User() {
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 }
