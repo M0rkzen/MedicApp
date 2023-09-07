@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 
+import com.example.demo.entity.Medic;
 import com.example.demo.entity.User;
 import com.example.demo.service.MedicService;
 import com.example.demo.service.PatientService;
@@ -28,12 +29,24 @@ public class UserController {
     @PostMapping()
     public ResponseEntity<Object> addNewUser(@RequestBody User user) {
         String userType = user.getUserType();
-        if("Medic".equals(userType) || "Patient".equals(userType)) {
-            userService.addNewUser(user, userType);
-            return new ResponseEntity<>("User created!", HttpStatus.CREATED);
-        } else {
+
+        if (userType == null || (!userType.equals("Medic") && !userType.equals("Patient"))) {
             return new ResponseEntity<>("Invalid user type!", HttpStatus.BAD_REQUEST);
         }
-    }
 
+        userService.addNewUser(user, userType);
+
+        if (userType.equals("Medic")) {
+            if (user instanceof Medic) {
+                Medic medic = (Medic) user;
+                String specializare = medic.getSpecializare();
+                medicService.specializare(medic, specializare);
+                return new ResponseEntity<>("Medic created with specialization: " + specializare, HttpStatus.CREATED);
+            }
+        } else if (userType.equals("Patient")) {
+            return new ResponseEntity<>("Patient created!", HttpStatus.CREATED);
+        }
+
+        return new ResponseEntity<>("User created!", HttpStatus.CREATED);
+    }
 }
