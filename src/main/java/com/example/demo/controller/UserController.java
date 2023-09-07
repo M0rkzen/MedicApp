@@ -32,7 +32,7 @@ public class UserController {
             userService.addNewUser(user, userType);
             return new ResponseEntity<>("User created!", HttpStatus.CREATED);
         } else {
-            return new ResponseEntity<>("Invalid user type.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Invalid user type!", HttpStatus.BAD_REQUEST);
         }
     }
 
